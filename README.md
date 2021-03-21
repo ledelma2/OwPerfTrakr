@@ -5,7 +5,7 @@
 1. Data Collection
 2. Data Storage and Access
 
-## Data Collection
+## 1. Data Collection
 
 ### Premise
 
