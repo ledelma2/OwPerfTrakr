@@ -10,7 +10,9 @@
   ### Premise
 
     The first part of the project will be Data Collection. Here all data needed to perform analysis will be collected.
+
     The actual match data collection is intended to be done using an api. Currently I am looking into what sets are available, but the hope is to find one directly through Blizzard.
+
     Once the data has been collected I intend to put it directly into some not yet specified DTO. This DTO will then be sent to the Data Storage and Access class for cleaning and insertion into the database.
 
   ### Assumptions
