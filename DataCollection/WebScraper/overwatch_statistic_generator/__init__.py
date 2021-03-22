@@ -1,4 +1,3 @@
-from overwatch_user import OverwatchUser
 from .enums import GameModes
 from .lookups import dataTables, heroes
 
