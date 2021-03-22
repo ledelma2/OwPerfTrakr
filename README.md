@@ -20,3 +20,10 @@ Once the data has been collected I intend to put it directly into some not yet s
 This is a very uncertain part of the project so early on, the following is subject to change upon discovery of new information
 
 1. Data will be parsed in the Data Storage and Access portion of the project
+
+
+## 2. Data Storage and Access
+
+The next portion of the project is Data Storage and Access. In this section we go over everything related to how the data will be stored and accessed.
+
+First and foremost the data will be stored in a MySql database. This decision was made with the idea that it will work nicely with Java for database insertion and with C# for data retrieval. In addition to that hosting the server will be significantly easier than with MS SQL Server.
