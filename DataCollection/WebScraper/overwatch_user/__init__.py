@@ -14,6 +14,4 @@ class OverwatchUser:
     """
     def __init__(self, battletag, htmlSession):
         self.battletag = battletag.replace('#', '-')
-        print('Getting html session response...')
         self.response = htmlSession.get(self._url + 'us/' + self.battletag)
-        print('Html session response recieved...')

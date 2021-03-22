@@ -1,0 +1,40 @@
+from .enums import DataTables, Heroes
+
+dataTables = {
+    DataTables.Combat:          'Combat',
+    DataTables.Game:            'Game',
+    DataTables.HeroSpecific:    'Hero Specific',
+    DataTables.Assists:         'Assists',
+}
+
+heroes = {
+    Heroes.All:         '0x02E00000FFFFFFFF',
+    Heroes.Reaper:      '0x02E0000000000002',
+    Heroes.Tracer:      '0x02E0000000000003',
+    Heroes.Mercy:       '0x02E0000000000004',
+    Heroes.Hanzo:       '0x02E0000000000005',
+    Heroes.Torbjorn:    '0x02E0000000000006',
+    Heroes.Reinhardt:   '0x02E0000000000007',
+    Heroes.Pharah:      '0x02E0000000000008',
+    Heroes.Winston:     '0x02E0000000000009',
+    Heroes.Widowmaker:  '0x02E000000000000A',
+    Heroes.Bastion:     '0x02E0000000000015',
+    Heroes.Symmetra:    '0x02E0000000000016',
+    Heroes.Zenyatta:    '0x02E0000000000020',
+    Heroes.Genji:       '0x02E0000000000029',
+    Heroes.Roadhog:     '0x02E0000000000040',
+    Heroes.McCree:      '0x02E0000000000042',
+    Heroes.Junkrat:     '0x02E0000000000065',
+    Heroes.Zarya:       '0x02E0000000000068',
+    Heroes.Soldier76:   '0x02E000000000006E',
+    Heroes.Lucio:       '0x02E0000000000079',
+    Heroes.Dva:         '0x02E000000000007A',
+    Heroes.Mei:         '0x02E00000000000DD',
+    Heroes.Sombra:      '0x02E000000000012E',
+    Heroes.Doomfist:    '0x02E000000000012F',
+    Heroes.Ana:         '0x02E000000000013B',
+    Heroes.Orisa:       '0x02E000000000013E',
+    Heroes.Moira:       '0x02E00000000001A2',
+    Heroes.Brigitte:    '0x02E0000000000195',
+    Heroes.Ashe:        '0x02E0000000000200',
+}

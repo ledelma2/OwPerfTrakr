@@ -18,7 +18,9 @@ def getInfo(heroName, ow):
     data.append(combat[i+1])
     i = combat.index('Objective Time')
     data.append(combat[i+1])
-    assists = ow(mode="cp", hero=heroName, filter="assists")
+    assists = ow(mode="cp", hero=heroName, filter="hero specific")
+    i = assists.index('Average Energy')
+    data.append(assists[i+1])
     return data
 
 def main():
