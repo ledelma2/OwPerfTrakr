@@ -5,9 +5,9 @@ from overwatch_statistic_generator.enums import DataTables, Heroes
 
 def main():
     session = HTMLSession()
-    overwatchUser = OverwatchUser(battletag = "Serb#11472", htmlSession = session)
+    overwatchUser = OverwatchUser(battletag = "Surb#11378", htmlSession = session)
     statsGenerator = OverwatchStatisticGenerator(overwatchUser)
-    print(statsGenerator.GetHeroStatistics(Heroes.Reinhardt, DataTables.Combat))
+    print(statsGenerator.GetHeroStatistics(Heroes.Baptiste, DataTables.Combat))
 
 if __name__ == '__main__':
     main()
