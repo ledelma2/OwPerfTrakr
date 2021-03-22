@@ -57,9 +57,9 @@ class OverwatchStatisticGenerator:
                 table_data = card.text.split("\n")[1:]
                 break
 
-        return self.__parse_table_stat_list(table_data)
+        return self.__parse_table_data(table_data)
 
-    def __parse_table_stat_list(self, table_data) -> dict:
+    def __parse_table_data(self, table_data) -> dict:
         """
         Parses the table stat list into a dictionary.
 
