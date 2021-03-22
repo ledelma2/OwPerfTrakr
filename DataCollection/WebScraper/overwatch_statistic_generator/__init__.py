@@ -23,7 +23,7 @@ class OverwatchStatisticGenerator:
         self.overwatchUser = overwatchUser
         self.gameMode = 0 if mode == GameModes.QP else 1
 
-    def GetHeroStatistics(self, hero) -> json:
+    def GetHeroStatistics(self, hero) -> str:
         """
         Generates all statistics for a particular hero.
 
@@ -41,7 +41,7 @@ class OverwatchStatisticGenerator:
 
         return json.dumps(heroStats)
 
-    def GetTableSpecificHeroStats(self, table, heroDataCards) -> json:
+    def GetTableSpecificHeroStats(self, table, heroDataCards) -> str:
         """
         Gets hero stats for a specific table.
 
@@ -49,4 +49,8 @@ class OverwatchStatisticGenerator:
             table (DataTables): Enum for the table desired.
             heroDataCards (obj): Stat block that holds all cards for the particular hero.
         """
-        tableName = dataTables[table]
+        tableStats = {}
+        tableName = tables[table]
+        for card in heroDataCards:
+            if card.text.startswith(tableName):
+                return card.text.split("\n")[1:]
