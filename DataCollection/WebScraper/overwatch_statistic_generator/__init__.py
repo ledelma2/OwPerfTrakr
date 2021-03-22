@@ -1,56 +1,73 @@
 import json
-from .enums import GameModes
-from .lookups import dataTables, heroes
+from .enums import DataTables, GameModes
+from .lookups import data_tables, heroes
 
 class OverwatchStatisticGenerator:
     """
     This class is for generating overwatch statistics.
 
     Attributes:
-        overwatchUser (OverwatchUser): The user whose performance statistics are desired.
-        gameMode (int): The gamemode for the desired stats.
+        overwatch_user (OverwatchUser): The user whose performance statistics are desired.
+        game_mode (int): The gamemode for the desired stats.
     """
 
-    def __init__(self, overwatchUser, mode = GameModes.QP):
+    def __init__(self, overwatch_user, mode = GameModes.QP):
         """
         Constructor for the OverwatchStatisticGenerator.
         Generates stats for quick play by default.
 
         Parameters:
-            overwatchUser (OverwatchUser): The current overwatch user.
+            overwatch_user (OverwatchUser): The current overwatch user.
             mode (GameModes)(optional): Enum for the game mode desired.
         """
-        self.overwatchUser = overwatchUser
-        self.gameMode = 0 if mode == GameModes.QP else 1
+        self.overwatch_user = overwatch_user
+        self.game_mode = 0 if mode == GameModes.QP else 1
 
-    def GetHeroStatistics(self, hero) -> str:
+    def get_hero_statistics(self, hero) -> dict:
         """
         Generates all statistics for a particular hero.
 
         Parameters:
             hero (Heroes): Enum for the hero desired.
         """
-        heroStats = {}
-        heroAddress = heroes[hero]
-        css_selector = f'div[data-category-id="{heroAddress}"]'
-        heroGameModeTables = self.overwatchUser.response.html.find(css_selector)
-        heroDataTables = heroGameModeTables[self.gameMode]
-        heroDataCards = heroDataTables.find('.card-stat-block')
+        hero_stats = {}
+        hero_address = heroes[hero]
+        css_selector = f'div[data-category-id="{hero_address}"]'
+        hero_game_mode_tables = self.overwatch_user.response.html.find(css_selector)
+        hero_data_tables = hero_game_mode_tables[self.game_mode]
+        hero_data_cards = hero_data_tables.find('.card-stat-block')
         for table in DataTables:
-            heroStats[table.name] = GetTableSpecificHeroStats(table, heroDataCards)
+            hero_stats[table.name] = self.__get_table_specific_stats(table, hero_data_cards)
 
-        return json.dumps(heroStats)
+        return hero_stats
 
-    def GetTableSpecificHeroStats(self, table, heroDataCards) -> str:
+    def __get_table_specific_stats(self, table, hero_data_cards) -> dict:
         """
-        Gets hero stats for a specific table.
+        Gets specific table stats.
 
         Parameters:
             table (DataTables): Enum for the table desired.
-            heroDataCards (obj): Stat block that holds all cards for the particular hero.
+            hero_data_cards (list): Stat block that holds all cards for the particular hero.
         """
-        tableStats = {}
-        tableName = tables[table]
-        for card in heroDataCards:
-            if card.text.startswith(tableName):
-                return card.text.split("\n")[1:]
+        table_stats = {}
+        table_data = []
+        table_name = data_tables[table]
+        for card in hero_data_cards:
+            if card.text.startswith(table_name):
+                table_data = card.text.split("\n")[1:]
+                break
+
+        return self.__parse_table_stat_list(table_data)
+
+    def __parse_table_stat_list(self, table_data) -> dict:
+        """
+        Parses the table stat list into a dictionary.
+
+        Parameters:
+            table_data (list): List of table stats to be parsed.
+        """
+        table_stats = {}
+        for i in range(0, len(table_data), 2):
+            table_stats[table_data[i]] = table_data[i+1]
+
+        return table_stats

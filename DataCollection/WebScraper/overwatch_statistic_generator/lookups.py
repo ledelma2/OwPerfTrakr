@@ -1,6 +1,6 @@
 from .enums import DataTables, Heroes
 
-dataTables = {
+data_tables = {
     DataTables.Combat:          'Combat',
     DataTables.Game:            'Game',
     DataTables.HeroSpecific:    'Hero Specific',

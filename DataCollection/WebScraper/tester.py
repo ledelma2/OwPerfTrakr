@@ -7,7 +7,7 @@ def main():
     session = HTMLSession()
     overwatchUser = OverwatchUser(battletag = "Surb#11378", htmlSession = session)
     statsGenerator = OverwatchStatisticGenerator(overwatchUser)
-    print(statsGenerator.GetHeroStatistics(Heroes.Baptiste, DataTables.Combat))
+    print(statsGenerator.get_hero_statistics(Heroes.Reinhardt))
 
 if __name__ == '__main__':
     main()
