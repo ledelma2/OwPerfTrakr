@@ -11,7 +11,7 @@
 
 The first part of the project will be Data Collection. Here all data needed to perform analysis will be collected.
 
-The actual match data collection is intended to be done using a refactored version of my scraper from the old OverwatchDSApp project. To be completely honest I don't remember how it 100% works anymore, but I do know it uses some weird api from the 1000th page of google and a beautiful soup 4 web scraper. From there it puts everything into a collection, but I currently need to look further into what that collection makeup is. Regardless, this should suffice for the initial collection portion of the project.
+The actual match data collection is intended to be done using a refactored version of my scraper from the old OverwatchDSApp project. To be completely honest I don't remember how it 100% works anymore, but I do know it uses some weird api from the 1000th page of google. From there it puts everything into a collection, but I currently need to look further into what that collection makeup is. Regardless, this should suffice for the initial collection portion of the project.
 
 Once the data has been collected I intend to put it directly into some not yet specified DTO. This DTO will then be sent to the Data Storage and Access class for cleaning and insertion into the database.
 
