@@ -1,5 +1,6 @@
 from overwatch_user import OverwatchUser
 from .enums import GameModes
+from .lookups import dataTables, heroes
 
 """
 Class for generating overwatch statistics.
@@ -20,8 +21,18 @@ class OverwatchStatisticGenerator:
     """
     Parameters
     -----------
-    hero : `str`
-        User's battletag in the form of '[userName]#[userNumber]'.
+    hero : `Heroes`
+        Heroes enum for the hero desired.
+    table : `DataTables`
+        DataTables enum for the table desired.
     """
-    def GetHeroStatistics(self, hero):
-        print('Hello')
+    def GetHeroStatistics(self, hero, table):
+        tableName = dataTables[table]
+        heroAddress = heroes[hero]
+        css_selector = f'div[data-category-id="{heroAddress}"]'
+        heroGameModeTables = self.overwatchUser.response.html.find(css_selector)
+        heroDataTables = heroGameModeTables[self.gameMode]
+        hereDataCards = heroDataTables.find('.card-stat-block')
+        for card in hereDataCards:
+            if card.text.startswith(tableName):
+                return card.text.split("\n")[1:]
