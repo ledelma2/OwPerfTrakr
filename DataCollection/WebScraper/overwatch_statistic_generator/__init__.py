@@ -31,7 +31,7 @@ class OverwatchStatisticGenerator:
         css_selector = f'div[data-category-id="{heroAddress}"]'
         heroGameModeTables = self.overwatchUser.response.html.find(css_selector)
         heroDataTables = heroGameModeTables[self.gameMode]
-        hereDataCards = heroDataTables.find('.card-stat-block')
-        for card in hereDataCards:
+        heroDataCards = heroDataTables.find('.card-stat-block')
+        for card in heroDataCards:
             if card.text.startswith(tableName):
                 return card.text.split("\n")[1:]
