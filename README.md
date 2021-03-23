@@ -11,16 +11,17 @@
 
 The first part of the project will be Data Collection. Here all data needed to perform analysis will be collected.
 
-The actual match data collection is intended to be done using a refactored version of my scraper from the old OverwatchDSApp project. To be completely honest I don't remember how it 100% works anymore, but I do know it uses some weird api from the 1000th page of google. From there it puts everything into a collection, but I currently need to look further into what that collection makeup is. Regardless, this should suffice for the initial collection portion of the project.
+The match data collection is done using a refactored version of my web scraper from the old OverwatchDSApp project. That project was based off an outdated python webscraper developed by Alex Botello. From what I can tell the component used the requests-html library to import html from the playoverwatch website. From there Alex found a pattern for parsing out hero stat data. All this logic and code can be found at the path DataCollection/web_scraper/deprecated/python-overwatch. 
 
-Once the data has been collected I intend to put it directly into some not yet specified DTO. This DTO will then be sent to the Data Storage and Access class for cleaning and insertion into the database.
+The refactored web scraper contains 3 major components:
+- overwatch_user
+- - a class to denote an overwatch player whose data we wish to scrape
+- overwatch_statistic_generator
+- - a class to collect all statistics for a specific hero for a specific overwatch player
+- overwatch_data_collector
+- - a class to collect all data for all heroes for a specific overwatch player
 
-### Assumptions
-
-This is a very uncertain part of the project so early on, the following is subject to change upon discovery of new information
-
-1. Data will be parsed in the Data Storage and Access portion of the project
-
+Once the data has been collected I intend to put it directly into a json string. This json data will then be sent to the Data Storage and Access class for cleaning and insertion into the database.
 
 ## 2. Data Storage and Access
 
