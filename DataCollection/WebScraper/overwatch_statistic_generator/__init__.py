@@ -34,10 +34,12 @@ class OverwatchStatisticGenerator:
         hero_address = heroes[hero]
         css_selector = f'div[data-category-id="{hero_address}"]'
         hero_game_mode_tables = self.overwatch_user.response.html.find(css_selector)
-        hero_data_tables = hero_game_mode_tables[self.game_mode]
-        hero_data_cards = hero_data_tables.find('.card-stat-block')
-        for table in DataTables:
-            hero_stats[table.name] = self.__get_table_specific_stats(table, hero_data_cards)
+
+        if len(hero_game_mode_tables) > self.game_mode:
+            hero_data_tables = hero_game_mode_tables[self.game_mode]
+            hero_data_cards = hero_data_tables.find('.card-stat-block')
+            for table in DataTables:
+                hero_stats[table.name] = self.__get_table_specific_stats(table, hero_data_cards)
 
         return hero_stats
 
