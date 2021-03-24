@@ -39,4 +39,4 @@ Thumbs.db
 # Config files #
 ######################
 *.json
-!spec/*.example.json
+!*.example.json
