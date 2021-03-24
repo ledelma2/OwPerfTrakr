@@ -31,9 +31,9 @@ class OverwatchDataCollector:
         """
         Gets a json array string for all heroes associated to the profile.
         """
-        hero_stat_list = {}
+        hero_stat_list = []
         for hero in Heroes:
-            hero_stat_list[hero.name] = self.stats_generator.get_hero_statistics(hero)
+            hero_stat_list.append(self.stats_generator.get_hero_statistics(hero))
 
         return json.dumps(hero_stat_list)
 

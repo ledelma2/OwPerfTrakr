@@ -31,6 +31,7 @@ class OverwatchStatisticGenerator:
             hero (Heroes): Enum for the hero desired.
         """
         hero_stats = {}
+        hero_stats['Hero'] = hero.name
         hero_address = heroes[hero]
         css_selector = f'div[data-category-id="{hero_address}"]'
         hero_game_mode_tables = self.overwatch_user.response.html.find(css_selector)
