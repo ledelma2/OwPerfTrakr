@@ -37,5 +37,7 @@ class OverwatchDataCollector:
 
         return json.dumps(hero_stat_list)
 
-data_collector = OverwatchDataCollector('Surb#11378', 'qp')
+file = open('data_collection_settings.json')
+settings = json.load(file)
+data_collector = OverwatchDataCollector(settings['Username'], settings['GameMode'])
 print(data_collector.get_all_hero_stats())
