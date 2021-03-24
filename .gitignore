@@ -40,3 +40,8 @@ Thumbs.db
 ######################
 *.json
 !*.example.json
+
+# Python files and folders #
+######################
+__pycache__/
+*.pyc
