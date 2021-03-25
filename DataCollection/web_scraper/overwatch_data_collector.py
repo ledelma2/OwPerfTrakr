@@ -37,4 +37,4 @@ class OverwatchDataCollector:
         return json.dumps(hero_stat_list)
 
 data_collector = OverwatchDataCollector(sys.argv[1], sys.argv[2])
-print(data_collector.get_all_hero_stats())
+return data_collector.get_all_hero_stats()

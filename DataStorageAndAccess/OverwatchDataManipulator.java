@@ -1,5 +1,5 @@
 import datacollection.DataCollector;
-import datacollection.util.OverwatchDataCollector;
+import datacollection.overwatch.OverwatchDataCollector;
 
 /**
 * Class to manipulate the overwatch data.
@@ -11,12 +11,12 @@ public class OverwatchDataManipulator
 {
   public static void main(String[] args)
   {
-    DataCollector dc = new OverwatchDataCollector();
+    DataCollector dc = new OverwatchDataCollector("Fake#11111", "qp");
     getJsonString(dc);
   }
 
   public static void getJsonString(DataCollector dc)
   {
-    System.out.println(dc.getJsonStringData());
+    System.out.println(dc.getJsonDataString());
   }
 }
