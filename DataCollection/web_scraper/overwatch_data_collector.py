@@ -1,8 +1,8 @@
 import json, sys
 from requests_html import HTMLSession
-from web_scraper.overwatch_user import OverwatchUser
-from web_scraper.overwatch_statistic_generator import OverwatchStatisticGenerator
-from web_scraper.overwatch_statistic_generator.enums import GameModes, Heroes
+from overwatch_user import OverwatchUser
+from overwatch_statistic_generator import OverwatchStatisticGenerator
+from overwatch_statistic_generator.enums import GameModes, Heroes
 
 class OverwatchDataCollector:
     """
