@@ -1,5 +1,4 @@
-import json
-import sys
+import json, sys
 from requests_html import HTMLSession
 from web_scraper.overwatch_user import OverwatchUser
 from web_scraper.overwatch_statistic_generator import OverwatchStatisticGenerator
@@ -37,7 +36,5 @@ class OverwatchDataCollector:
 
         return json.dumps(hero_stat_list)
 
-file = open('data_collection_settings.json')
-settings = json.load(file)
-data_collector = OverwatchDataCollector(settings['Username'], settings['GameMode'])
+data_collector = OverwatchDataCollector(sys.argv[1], sys.argv[2])
 print(data_collector.get_all_hero_stats())
