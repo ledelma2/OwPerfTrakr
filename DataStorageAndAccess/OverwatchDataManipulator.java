@@ -1,5 +1,9 @@
 import datacollection.DataCollector;
-import datacollection.util.OverwatchDataCollector;
+import datacollection.overwatch.OverwatchDataCollector;
+import org.json.*;
+import java.io.*;
+import java.lang.*;
+import java.util.*;
 
 /**
 * Class to manipulate the overwatch data.
@@ -9,14 +13,48 @@ import datacollection.util.OverwatchDataCollector;
 */
 public class OverwatchDataManipulator
 {
+  public static String battletag;
+  public static String gameMode;
+
   public static void main(String[] args)
   {
-    DataCollector dc = new OverwatchDataCollector();
-    getJsonString(dc);
+    try
+    {
+      loadAppSettings();
+      DataCollector dc = new OverwatchDataCollector(battletag, gameMode);
+      getJsonString(dc);
+    }
+    catch (FileNotFoundException fileNotFound)
+    {
+      System.out.println("Couldn't find appsettings.json in the DataStorageAndAccess folder...");
+    }
+    catch (IOException inputOutput)
+    {
+      System.out.println("A necessary file does not have read access...");
+    }
   }
 
   public static void getJsonString(DataCollector dc)
   {
-    System.out.println(dc.getJsonStringData());
+    System.out.println(dc.getJsonDataString());
+  }
+
+  /**
+  * Loads the application settings.
+  */
+  public static void loadAppSettings() throws FileNotFoundException, IOException
+  {
+    File appSettings = new File("appsettings.json");
+    FileReader fr = new FileReader(appSettings);
+    BufferedReader reader = new BufferedReader(fr);
+    StringBuffer sb = new StringBuffer();
+    String str;
+    while((str = reader.readLine())!= null){
+       sb.append(str);
+    }
+
+    JSONObject settings = new JSONObject(sb.toString());
+    battletag = settings.getString("Username");
+    gameMode = settings.getString("GameMode");
   }
 }

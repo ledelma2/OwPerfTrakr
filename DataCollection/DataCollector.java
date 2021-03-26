@@ -5,5 +5,8 @@ package datacollection;
 */
 public interface DataCollector
 {
-  String getJsonStringData();
+  /**
+  * Gets a string representation of the json data.
+  */
+  String getJsonDataString();
 }
