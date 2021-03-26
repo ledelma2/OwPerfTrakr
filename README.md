@@ -23,6 +23,10 @@ The refactored web scraper is still Python3 based and contains 3 major component
 
 Once the data has been collected it is put directly into a json string. This json data will then be sent to the Data Storage and Access class for cleaning and insertion into the database.
 
+### Script Execution and Data Transfer
+
+In order to obtain the match data we must be able to call the web scraper from the Java application and pipe data in. My research for calling python scripts in Java led me to a few different potential solutions. The easiest one seemed to be using the Jython 3rd party library, as it contained a specific function for executing scripts, in addition to not requiring a local install of python. The other solution would be to use Java's built in ProcessBuilder API for creating and running external processes. While this method appeared to require more coding and documentation research, it required no additional download or setup. Due to those setup benifits and Jython only being able to run Python2, this application uses the ProcessBuilder approach.
+
 ## 2. Data Storage and Access
 
 The next portion of the project is Data Storage and Access. Everything related to how the data will be stored and accessed can be found in this section.
@@ -31,7 +35,6 @@ The next portion of the project is Data Storage and Access. Everything related t
 
 The cleaning and insertion of data into the database will be done using Java.
 
-In order to obtain the match data we must be able to call the web scraper from the Java application and pipe data in. My research for calling python scripts in Java led me to a few different potential solutions. The easiest one seemed to be using the Jython 3rd party library, as it contained a specific function for executing scripts, in addition to not requiring a local install of python. The other solution would be to use Java's built in ProcessBuilder API for creating and running external processes. While this method appeared to require more coding and documentation research, it required no additional download or setup. Due to those setup benifits and Jython only being able to run Python2, this application uses the ProcessBuilder approach.
 
 ### Data Storage and Database Schema
 
