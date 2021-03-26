@@ -24,9 +24,13 @@ public class OverwatchDataManipulator
       DataCollector dc = new OverwatchDataCollector(battletag, gameMode);
       getJsonString(dc);
     }
-    catch (Exception e)
+    catch (FileNotFoundException fileNotFound)
     {
-      System.out.println("An error occured");
+      System.out.println("Couldn't find appsettings.json in the DataStorageAndAccess folder...");
+    }
+    catch (IOException inputOutput)
+    {
+      System.out.println("A necessary file does not have read access...");
     }
   }
 
