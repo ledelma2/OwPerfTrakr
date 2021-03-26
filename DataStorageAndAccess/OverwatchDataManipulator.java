@@ -35,6 +35,9 @@ public class OverwatchDataManipulator
     System.out.println(dc.getJsonDataString());
   }
 
+  /**
+  * Loads the application settings.
+  */
   public static void loadAppSettings() throws FileNotFoundException, IOException
   {
     File appSettings = new File("appsettings.json");
