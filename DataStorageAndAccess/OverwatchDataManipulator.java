@@ -39,7 +39,6 @@ public class OverwatchDataManipulator
   public static void getJsonString(DataCollector dc)
   {
     String str = dc.getJsonDataString();
-    //System.out.println(str);
     DataCleaner dataCleaner = new OverwatchDataCleaner(str);
     JSONObject obj = dataCleaner.cleanData();
   }
