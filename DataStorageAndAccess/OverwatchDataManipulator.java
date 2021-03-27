@@ -1,5 +1,7 @@
 import datacollection.DataCollector;
 import datacollection.overwatch.OverwatchDataCollector;
+import datacleaner.DataCleaner;
+import datacleaner.overwatch.OverwatchDataCleaner;
 import org.json.*;
 import java.io.*;
 import java.lang.*;
@@ -36,7 +38,10 @@ public class OverwatchDataManipulator
 
   public static void getJsonString(DataCollector dc)
   {
-    System.out.println(dc.getJsonDataString());
+    String str = dc.getJsonDataString();
+    //System.out.println(str);
+    DataCleaner dataCleaner = new OverwatchDataCleaner(str);
+    JSONObject obj = dataCleaner.cleanData();
   }
 
   /**

@@ -1,4 +1,4 @@
-package datacleaning;
+package datacleaner;
 
 import org.json.*;
 

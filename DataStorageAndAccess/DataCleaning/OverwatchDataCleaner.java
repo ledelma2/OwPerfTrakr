@@ -1,7 +1,7 @@
-package datacleaning.overwatch;
+package datacleaner.overwatch;
 
 import org.json.*;
-import datacleaning.DataCleaner;
+import datacleaner.DataCleaner;
 
 /**
 * Class to specifically clean data from the OverwatchDataCollector.
@@ -9,7 +9,7 @@ import datacleaning.DataCleaner;
 public class OverwatchDataCleaner implements DataCleaner
 {
   private String uncleanedData;
-  private JSONObject transformedData;
+  private JSONArray transformedData;
   private JSONObject cleanedData;
 
   /**
@@ -29,27 +29,25 @@ public class OverwatchDataCleaner implements DataCleaner
   */
   public JSONObject cleanData()
   {
-    transformedData = transformOverwatchData(uncleanedData);
-    cleanedData = cleanOverwatchData(transformedData);
+    transformUncleanedData();
+    System.out.println(transformedData.toString());
+    cleanTransformedData();
     return cleanedData;
   }
 
   /**
-  * Transforms the string data into a json object representation.
+  * Transforms the uncleaned string data into a json object representation.
   */
-  private JSONObject transformOverwatchData(String data)
+  private void transformUncleanedData()
   {
-    return new JSONObject();
+    transformedData = new JSONArray(uncleanedData);
   }
 
   /**
   * Cleans the transformed data.
-  *
-  * @param  data  json object of the transformed data to be cleaned
-  * @return       json object of the cleaned, transformed data
   */
-  private JSONObject cleanTransformedData(JSONObject data)
+  private void cleanTransformedData()
   {
-    return new JSONObject();
+    cleanedData = new JSONObject();
   }
 }
