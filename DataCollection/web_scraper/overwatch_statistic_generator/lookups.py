@@ -1,12 +1,5 @@
 from .enums import DataTables, Heroes
 
-data_tables = {
-    DataTables.Combat:          'Combat',
-    DataTables.Game:            'Game',
-    DataTables.HeroSpecific:    'Hero Specific',
-    DataTables.Assists:         'Assists',
-}
-
 heroes = {
     Heroes.All:             '0x02E00000FFFFFFFF',
     Heroes.Reaper:          '0x02E0000000000002',

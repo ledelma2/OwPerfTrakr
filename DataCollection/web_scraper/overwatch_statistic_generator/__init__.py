@@ -3,6 +3,8 @@ from .enums import DataTables, GameModes
 from .lookups import data_tables, heroes
 
 class OverwatchStatisticGenerator:
+    blacklisted_tables = ['Average', 'Best']
+
     """
     This class is for generating overwatch statistics.
 
@@ -39,28 +41,16 @@ class OverwatchStatisticGenerator:
         if len(hero_game_mode_tables) > self.game_mode:
             hero_data_tables = hero_game_mode_tables[self.game_mode]
             hero_data_cards = hero_data_tables.find('.card-stat-block')
-            for table in DataTables:
-                hero_stats[table.name] = self.__get_table_specific_stats(table, hero_data_cards)
+            for card in hero_data_cards:
+                try:
+                    table_data = card.text.split("\n")
+                    if table_data[0] not in self.blacklisted_tables:
+                        hero_stats[table_data[0]] = self.__parse_table_data(table_data[1:])
+
+                except:
+                    continue
 
         return hero_stats
-
-    def __get_table_specific_stats(self, table, hero_data_cards) -> dict:
-        """
-        Gets specific table stats.
-
-        Parameters:
-            table (DataTables): Enum for the table desired.
-            hero_data_cards (list): Stat block that holds all cards for the particular hero.
-        """
-        table_stats = {}
-        table_data = []
-        table_name = data_tables[table]
-        for card in hero_data_cards:
-            if card.text.startswith(table_name):
-                table_data = card.text.split("\n")[1:]
-                break
-
-        return self.__parse_table_data(table_data)
 
     def __parse_table_data(self, table_data) -> dict:
         """
@@ -71,6 +61,7 @@ class OverwatchStatisticGenerator:
         """
         table_stats = {}
         for i in range(0, len(table_data), 2):
-            table_stats[table_data[i]] = table_data[i+1]
+            if(i + 1 < len(table_data)):
+                table_stats[table_data[i]] = table_data[i+1]
 
         return table_stats

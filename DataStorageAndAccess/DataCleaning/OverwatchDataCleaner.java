@@ -1,6 +1,9 @@
 package datacleaner.overwatch;
 
 import org.json.*;
+import java.io.*;
+import java.lang.*;
+import java.util.*;
 import datacleaner.DataCleaner;
 
 /**
@@ -30,9 +33,24 @@ public class OverwatchDataCleaner implements DataCleaner
   public JSONObject cleanData()
   {
     transformUncleanedData();
-    System.out.println(transformedData.toString());
+    try
+    {
+      writeToFile(transformedData.toString());
+    }
+    catch(IOException ioe)
+    {
+      System.out.println("File error");
+    }
     cleanTransformedData();
     return cleanedData;
+  }
+
+  private void writeToFile(String str) throws IOException
+  {
+    BufferedWriter writer = new BufferedWriter(new FileWriter("data.json"));
+    writer.write(str);
+
+    writer.close();
   }
 
   /**
@@ -40,6 +58,7 @@ public class OverwatchDataCleaner implements DataCleaner
   */
   private void transformUncleanedData()
   {
+    System.out.println(uncleanedData);
     transformedData = new JSONArray(uncleanedData);
   }
 

@@ -4,12 +4,6 @@ class GameModes(enum.Enum):
     QP = 0
     COMP = 1
 
-class DataTables(enum.Enum):
-    Combat = 0
-    Game = 1
-    HeroSpecific = 2
-    Assists = 3
-
 class Heroes(enum.Enum):
     All = 0
     Reaper = 1
@@ -17,7 +11,7 @@ class Heroes(enum.Enum):
     Mercy = 3
     Hanzo = 4
     Torbjorn = 5
-    Reinhardt = 6,
+    Reinhardt = 6
     Pharah = 7
     Winston = 8
     Widowmaker = 9
