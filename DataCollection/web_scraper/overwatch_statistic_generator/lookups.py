@@ -1,4 +1,4 @@
-from .enums import DataTables, Heroes
+from .enums import Heroes
 
 heroes = {
     Heroes.All:             '0x02E00000FFFFFFFF',

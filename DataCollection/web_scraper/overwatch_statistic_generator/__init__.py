@@ -1,6 +1,6 @@
 import json
-from .enums import DataTables, GameModes
-from .lookups import data_tables, heroes
+from .enums import GameModes
+from .lookups import heroes
 
 class OverwatchStatisticGenerator:
     blacklisted_tables = ['Average', 'Best']
@@ -33,6 +33,7 @@ class OverwatchStatisticGenerator:
             hero (Heroes): Enum for the hero desired.
         """
         hero_stats = {}
+        hero_data = []
         hero_stats['Hero'] = hero.name
         hero_address = heroes[hero]
         css_selector = f'div[data-category-id="{hero_address}"]'
@@ -45,11 +46,12 @@ class OverwatchStatisticGenerator:
                 try:
                     table_data = card.text.split("\n")
                     if table_data[0] not in self.blacklisted_tables:
-                        hero_stats[table_data[0]] = self.__parse_table_data(table_data[1:])
+                        hero_data.append(self.__parse_table_data(table_data))
 
                 except:
                     continue
 
+        hero_stats['Data'] = hero_data
         return hero_stats
 
     def __parse_table_data(self, table_data) -> dict:
@@ -60,7 +62,8 @@ class OverwatchStatisticGenerator:
             table_data (list): List of table stats to be parsed.
         """
         table_stats = {}
-        for i in range(0, len(table_data), 2):
+        table_stats["TableName"] = table_data[0]
+        for i in range(1, len(table_data), 2):
             if(i + 1 < len(table_data)):
                 table_stats[table_data[i]] = table_data[i+1]
 
